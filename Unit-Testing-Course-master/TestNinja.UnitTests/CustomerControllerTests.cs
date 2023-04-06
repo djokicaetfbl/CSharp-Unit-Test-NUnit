@@ -15,6 +15,23 @@ namespace TestNinja.UnitTests
         public void GetCustomer_IdIsZero_ReturnNotFound()
         {
             var controller = new CustomerController();
+            var result = controller.GetCustomer(0);
+
+            Assert.That(result, Is.TypeOf<NotFound>()); // type of - it is exact that NotFound object
+
+            Assert.That(result, Is.InstanceOf<NotFound>());// instance of - it can be NotFound or one of its derivatives
+        }
+
+        [Test]
+        public void GetCustomer_IdIsNotZero_ReturnNotFound()
+        {
+
+        }
+
+        /*[Test]
+        public void GetCustomer_IdIsZero_ReturnNotFound()
+        {
+            var controller = new CustomerController();
 
             var result = controller.GetCustomer(0);
 
@@ -33,6 +50,6 @@ namespace TestNinja.UnitTests
             var result = controller.GetCustomer(1);
 
             Assert.That(result, Is.TypeOf<Ok>());
-        }
+        }*/
     }
 }

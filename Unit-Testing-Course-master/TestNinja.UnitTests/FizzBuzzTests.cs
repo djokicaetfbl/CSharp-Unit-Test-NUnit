@@ -12,7 +12,39 @@ namespace TestNinja.UnitTests
     [TestFixture]
     internal class FizzBuzzTests
     {
+        private FizzBuzz _fizzBuzz;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _fizzBuzz = new FizzBuzz();
+        }
+
         [Test]
+        public void GetOutput_NumberDivisibleByThreeAndFive_ReturnFizzBuzz()
+        {
+            Assert.That(FizzBuzz.GetOutput(15), Is.EqualTo("FizzBuzz"));
+        }
+
+        [Test]
+        public void GetOutput_NumberDivisibleByThreeOnly_ReturnFizz()
+        {
+            Assert.That(FizzBuzz.GetOutput(3), Is.EqualTo("Fizz"));
+        }
+
+        [Test]
+        public void GetOutput_NumberDivisibleByFiveOnly_ReturnFizz()
+        {
+            Assert.That(FizzBuzz.GetOutput(10), Is.EqualTo("Buzz"));
+        }
+
+        [Test]
+        public void GetOutput_NumberisNotDivisibleByThreeAndFive_ReturnFizzBuzz()
+        {
+            Assert.That(FizzBuzz.GetOutput(2), Is.Not.EqualTo("FizzBuzz"));
+        }
+
+        /*[Test]
         public void GetOutput_NumberDivisibleByThreeAndFive_ReturnFizzBuzz()
         {
             Assert.That(FizzBuzz.GetOutput(15), Is.EqualTo("FizzBuzz"));
@@ -40,6 +72,6 @@ namespace TestNinja.UnitTests
         public void GetOutput_NumberIsZero_ReturnFizzBuzz()
         {
             Assert.That(FizzBuzz.GetOutput(0), Is.EqualTo("FizzBuzz"));
-        }
+        }*/
     }
 }

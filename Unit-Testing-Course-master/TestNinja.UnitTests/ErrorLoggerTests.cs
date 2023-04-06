@@ -11,7 +11,52 @@ namespace TestNinja.UnitTests
     [TestFixture]
     class ErrorLoggerTests
     {
-        private ErrorLogger _logger;
+        [Test]
+        public void Log_WhenCalled_SetTheLastErrorProperty()
+        {
+            var logger = new ErrorLogger();
+
+            logger.Log("a");
+
+            Assert.That(logger.LastError, Is.EqualTo("a"));
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void Log_InvalidError_ThrowArgumentNullException(string error)
+        {
+            var logger = new ErrorLogger();
+            //logger.Log(error);
+
+            Assert.That(() => logger.Log(error), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void Log_ValidError_RaiseErrorLoggedEvent()
+        {
+            var logger = new ErrorLogger();
+
+            var id = Guid.Empty;
+            logger.ErrorLogged += (sender, args) => { id = args; };
+
+            logger.Log("a");
+
+            //logger.bla()
+            //logger.bla1();
+            //logger.bla2();
+
+            Assert.That(id, Is.Not.EqualTo(Guid.Empty));
+        }
+
+        /*[Test]
+        public void OnErrorLogged_WhenCalled_RaiseEvent()
+        {
+
+        }*/
+
+        /*private ErrorLogger _logger;
 
         [SetUp]
         public void SetUp()
@@ -45,6 +90,6 @@ namespace TestNinja.UnitTests
             _logger.Log("a");
 
             Assert.That(id, Is.Not.EqualTo(Guid.Empty));
-        }
+        }*/
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Newtonsoft.Json.Bson;
 
 namespace TestNinja.Fundamentals
 {
@@ -23,6 +24,17 @@ namespace TestNinja.Fundamentals
             // ...
 
             ErrorLogged?.Invoke(this, Guid.NewGuid());
+
+           // OnErrorLogged(Guid.NewGuid());
         }
+
+        protected virtual void OnErrorLogged(Guid errorId)
+        {
+            ErrorLogged?.Invoke(this, errorId);
+        }
+
+        //private void bla(){}
+        //protected void bla1(){}
+        //protected virtual void bla2(){}
     }
 }
