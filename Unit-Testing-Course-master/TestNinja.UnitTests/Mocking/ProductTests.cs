@@ -13,7 +13,7 @@ namespace TestNinja.UnitTests.Mocking
     public class ProductTests
     {
         [Test]
-        public void GetPrice_GoldCustom_Apply30PercentDiscount()
+        public void GetPrice_GoldCustom_Apply30PercentDiscount() // this one is better
         {
             var product = new Product { ListPrice = 100 };
 
